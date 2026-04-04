@@ -28,46 +28,35 @@ set "WIFI_NAME=YOUR_WIFI_NAME_HERE"
 
 > **Note:** Ensure you keep the quotation marks ("") around your network name if it contains spaces.
 
-🚀 Setup: Automate via Task Scheduler
+### 🚀 Setup: Automate via Task Scheduler
+
 To make the script run automatically every time you wake or unlock your PC, follow these exact steps:
 
-1. Create the Task
+**1. Create the Task**
+* Open the **Windows Start Menu**, search for **Task Scheduler**, and open the app.
+* In the right-hand 'Actions' panel, click **Create Task...** (Do *not* select Create Basic Task).
 
-Open the Windows Start Menu, search for Task Scheduler, and open the app.
+**2. General Tab**
+* In the 'Name' field, type a name (e.g., `Hotspot Auto-Connect`).
+* Check the box for **Run with highest privileges**.
 
-In the right-hand 'Actions' panel, click Create Task... (Do not select Create Basic Task).
+**3. Triggers Tab**
+* Click **New...**. 
+* From the 'Begin the task' dropdown, select **On workstation unlock**. 
+* Click OK.
 
-2. General Tab
+**4. Actions Tab**
+* Click **New...**. 
+* Keep 'Action' as **Start a program**. 
+* Click the **Browse** button and select your saved `AutoConnect.bat` file. 
+* Click OK.
 
-In the 'Name' field, type a name (e.g., Hotspot Auto-Connect).
+**5. Conditions Tab (Crucial for Laptops)**
+* Check the box for **Wake the computer to run this task**.
+* Uncheck the box for **Start the task only if the computer is on AC power** (so it runs perfectly on battery).
+* Click **OK** at the bottom to save.
 
-Check the box for Run with highest privileges.
+---
 
-3. Triggers Tab
-
-Click New....
-
-From the 'Begin the task' dropdown, select On workstation unlock.
-
-Click OK.
-
-4. Actions Tab
-
-Click New....
-
-Keep 'Action' as Start a program.
-
-Click the Browse button and select your saved AutoConnect.bat file.
-
-Click OK.
-
-5. Conditions Tab (Crucial for Laptops)
-
-Check the box for Wake the computer to run this task.
-
-Uncheck the box for Start the task only if the computer is on AC power (so it runs perfectly on battery).
-
-Click OK at the bottom to save.
-
-🔗 Download/Source link
-Download/Source link - https://github.com/mogdho/Hotspot-Auto-Connect
+### 🔗 Download/Source link
+- Download/Source link - [https://github.com/mogdho/Hotspot-Auto-Connect]
