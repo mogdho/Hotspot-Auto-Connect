@@ -15,41 +15,45 @@
 
 ### ⚙️ Configuration Guide
 
-Before running the script, you **MUST** update it with your own Wi-Fi/Hotspot name (SSID).
+Before running the script, you **MUST** update the `WIFI_NAME` variable with your own Wi-Fi/Hotspot name (SSID).
 
 1. Open `AutoConnect.bat` in Notepad or any text editor.
-2. Locate the two lines containing the network name (`Nothing Phone (2a)_7232` by default).
-3. Replace them with your exact Wi-Fi or Hotspot SSID.
+2. Locate the **USER CONFIGURATION SECTION** at the top of the script.
+3. Replace the default name with your exact Wi-Fi or Hotspot SSID.
 
-**Change this line:**
+**Update this single line:**
 ```bat
-netsh wlan connect name="YOUR_WIFI_NAME_HERE" >nul 2>&1
-```
-And this line:
-```
-netsh wlan show interfaces | findstr /C:"YOUR_WIFI_NAME_HERE" >nul
+set "WIFI_NAME=YOUR_WIFI_NAME_HERE"
 ```
 
-Note: Ensure you keep the quotation marks ("") around your network name if it contains spaces.
+> **Note:** Ensure you keep the quotation marks ("") around your network name if it contains spaces.
 
-#### 🚀 Setup: Automate via Task Scheduler
+🚀 Setup: Automate via Task Scheduler
 To make the script run automatically every time you wake or unlock your PC, follow these exact steps:
+
+1. Create the Task
 
 Open the Windows Start Menu, search for Task Scheduler, and open the app.
 
 In the right-hand 'Actions' panel, click Create Task... (Do not select Create Basic Task).
 
-General Tab: * In the 'Name' field, type a name (e.g., Nothing Hotspot).
+2. General Tab
 
-Check the box for Run with highest privileges (this ensures the script can control network adapters without interruption).
+In the 'Name' field, type a name (e.g., Hotspot Auto-Connect).
 
-Triggers Tab: * Click New....
+Check the box for Run with highest privileges.
+
+3. Triggers Tab
+
+Click New....
 
 From the 'Begin the task' dropdown, select On workstation unlock.
 
 Click OK.
 
-Actions Tab: * Click New....
+4. Actions Tab
+
+Click New....
 
 Keep 'Action' as Start a program.
 
@@ -57,13 +61,13 @@ Click the Browse button and select your saved AutoConnect.bat file.
 
 Click OK.
 
-Conditions Tab (Crucial for Laptops): * Check the box for Wake the computer to run this task.
+5. Conditions Tab (Crucial for Laptops)
+
+Check the box for Wake the computer to run this task.
 
 Uncheck the box for Start the task only if the computer is on AC power (so it runs perfectly on battery).
 
 Click OK at the bottom to save.
 
-From now on, as soon as your PC wakes from sleep or you unlock it, the script will execute automatically and connect you to your hotspot!
-
 🔗 Download/Source link
-Download/Source link - [Insert Your GitHub Repo URL Here]
+Download/Source link - https://github.com/mogdho/Hotspot-Auto-Connect
