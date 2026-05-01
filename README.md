@@ -69,7 +69,9 @@ The script utilizes a 4-step logic:
 ### 📜 License
 This project is licensed under the MIT License - feel free to modify and share!
 
----
-
 ### 👨‍💻 Author
-**Mogdho Paul**  
+
+**Mogdho Paul**
+
+🔗 GitHub: [github.com/mogdho](https://github.com/mogdho)
+📂 Source: [CleanUp-your-system](https://github.com/mogdho/Hotspot-Auto-Connect)
