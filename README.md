@@ -1,62 +1,75 @@
-# 📡 Hotspot Auto-Connect
-![Batch](https://img.shields.io/badge/Script-Batch_(.bat)-orange?style=for-the-badge&logo=windows-terminal)
-![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
-![Platform](https://img.shields.io/badge/Platform-Windows-blue?style=for-the-badge&logo=windows)
+#  Hotspot Auto-Connect
 
-**Hotspot Auto-Connect** is a robust Windows Batch script designed to aggressively search for and connect to a specific Wi-Fi network (like a mobile hotspot) as soon as you unlock your PC. It features an automated retry loop and a visually appealing ASCII success screen, making it a must-have utility for mobile internet users who face connection delays.
+![Windows Support](https://img.shields.io/badge/OS-Windows-blue?style=for-the-badge&logo=windows)
+![Scripting](https://img.shields.io/badge/Language-Batch-green?style=for-the-badge&logo=gnubash)
+![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
-### ✨ Key Features
-* **Aggressive Reconnection Loop:** Disconnects from any stale networks and continuously searches for your specific hotspot until a connection is established.
-* **Unlock Trigger:** Designed to be triggered instantly upon Windows workstation unlock using Task Scheduler.
-* **Visual Feedback:** Features a clean console interface that prevents spamming, culminating in a beautiful, UTF-8 encoded ASCII art success screen.
-* **Lightweight:** Pure Windows batch script requiring no external dependencies or installations.
+A smart automation script designed to eliminate the frustration of connecting to your mobile hotspot manually. Whether you wake your PC from sleep or restart, this script ensures your specific hotspot is connected instantly.
 
 ---
 
-### ⚙️ Configuration Guide
+### 🔍 The Problem
+Windows' built-in "Connect Automatically" feature often fails if your PC powers on **before** your phone's hotspot is active. In most cases, users are forced to:
+*   Open the Wi-Fi menu manually.
+*   Wait for the OS to "discover" the network (often taking 10–20 seconds).
+*   Manually click "Connect" and hope for the best.
 
-Before running the script, you **MUST** update the `WIFI_NAME` variable with your own Wi-Fi/Hotspot name (SSID).
-
-1. Open `AutoConnect.bat` in Notepad or any text editor.
-2. Locate the **USER CONFIGURATION SECTION** at the top of the script.
-3. Replace the default name with your exact Wi-Fi or Hotspot SSID.
-
-**Update this single line:**
-```bat
-set "WIFI_NAME=YOUR_WIFI_NAME_HERE"
-```
-
-> **Note:** Ensure you keep the quotation marks ("") around your network name if it contains spaces.
-
-### 🚀 Setup: Automate via Task Scheduler
-
-To make the script run automatically every time you wake or unlock your PC, follow these exact steps:
-
-**1. Create the Task**
-* Open the **Windows Start Menu**, search for **Task Scheduler**, and open the app.
-* In the right-hand 'Actions' panel, click **Create Task...** (Do *not* select Create Basic Task).
-
-**2. General Tab**
-* In the 'Name' field, type a name (e.g., `Hotspot Auto-Connect`).
-* Check the box for **Run with highest privileges**.
-
-**3. Triggers Tab**
-* Click **New...**. 
-* From the 'Begin the task' dropdown, select **On workstation unlock**. 
-* Click OK.
-
-**4. Actions Tab**
-* Click **New...**. 
-* Keep 'Action' as **Start a program**. 
-* Click the **Browse** button and select your saved `AutoConnect.bat` file. 
-* Click OK.
-
-**5. Conditions Tab (Crucial for Laptops)**
-* Check the box for **Wake the computer to run this task**.
-* Uncheck the box for **Start the task only if the computer is on AC power** (so it runs perfectly on battery).
-* Click **OK** at the bottom to save.
+My Batch script solves this by actively polling and forcing a connection the moment the hotspot becomes available.
 
 ---
 
-### 🔗 Download/Source link
-- Download/Source link - [https://github.com/mogdho/Hotspot-Auto-Connect]
+### ✨ Features
+*   **Auto-Swap:** Disconnects existing weak or unwanted Wi-Fi networks to prioritize your hotspot.
+*   **Smart Retry Loop:** Continuously searches for your hotspot until the connection is established.
+*   **Information Hub:** Once connected, it displays real-time signal strength, channel, and IP address.
+*   **Hacker Aesthetic:** A clean, centered ASCII interface with a success-green theme.
+*   **UTF-8 Optimized:** Uses safe block characters for a modern terminal look without crashing.
+
+---
+
+### 🚀 Getting Started
+
+#### 1. Setup the Script
+1.  Download the `Hotspot_Auto_Connect.bat` file.
+2.  Right-click and select **Edit**.
+3.  Replace `Nothing Phone (2a)_7232` with your specific **Hotspot Name (SSID)**.
+4.  Save the file in a safe folder (e.g., `C:\Scripts\`).
+
+#### 2. Windows Task Scheduler Guide (Auto-Run)
+To make the script run every time you unlock your laptop or wake it from sleep:
+
+1.  **Open Task Scheduler:** Press `Win + S` and type "Task Scheduler".
+2.  **Create Task:** Click **Create Task** (on the right panel).
+3.  **General Tab:**
+    *   Name: `AutoConnectHotspot`.
+    *   Check: **Run with highest privileges**.
+4.  **Triggers Tab:**
+    *   Click **New**.
+    *   Begin the task: Select **On workstation unlock**.
+5.  **Actions Tab:**
+    *   Click **New**.
+    *   Action: **Start a program**.
+    *   Program/script: Click **Browse** and select your `.bat` file.
+6.  **Conditions Tab:**
+    *   Uncheck: "Start the task only if the computer is on AC power" (Crucial for laptops).
+    *   Check: **Wake the computer to run this task**.
+7.  **Click OK.**
+
+---
+
+### 🛠️ Technical Breakdown
+The script utilizes a 4-step logic:
+1.  **Check:** Verifies if already connected to avoid redundant loops.
+2.  **Force:** Disconnects existing Wi-Fi profiles to clear the path.
+3.  **Connect:** Triggers `netsh wlan connect` in a retry loop.
+4.  **Audit:** Extracts network data using `ipconfig` and `netsh` interfaces for verification.
+
+---
+
+### 📜 License
+This project is licensed under the MIT License - feel free to modify and share!
+
+---
+
+### 👨‍💻 Author
+**Mogdho Paul**  
