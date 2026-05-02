@@ -69,13 +69,11 @@ echo    [SYSTEM] Fetching network configuration...
 timeout /t 2 /nobreak >nul
 
 for /f "tokens=2 delims=:" %%a in ('netsh wlan show interfaces ^| findstr /C:"Signal"') do echo    Signal Strength :%%a
-for /f "tokens=2 delims=:" %%a in ('netsh wlan show interfaces ^| findstr /C:"Channel"') do echo    Channel         :%%a
-for /f "tokens=2 delims=:" %%a in ('netsh wlan show interfaces ^| findstr /C:"Radio type"') do echo    Radio Type      :%%a
 
-:: Better IPv4 extraction logic
-for /f "tokens=2 delims=:" %%a in ('ipconfig ^| findstr /i "IPv4" ^| findstr /v "127.0.0.1"') do (
-    echo    IP Address      :%%a
-)
+:: Fetch public IPv4 via api.ipify.org
+set "PUBLIC_IP=Unavailable"
+for /f "delims=" %%a in ('powershell -Command "(Invoke-WebRequest -Uri 'https://api.ipify.org' -UseBasicParsing -TimeoutSec 5).Content" 2^>nul') do set "PUBLIC_IP=%%a"
+echo    Public IP       : !PUBLIC_IP!
 
 echo.
 echo  ────────────────────────────────────────────────────────────────────────────────
