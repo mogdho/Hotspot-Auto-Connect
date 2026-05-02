@@ -74,4 +74,4 @@ This project is licensed under the MIT License - feel free to modify and share!
 **Mogdho Paul**
 
 🔗 GitHub: [github.com/mogdho](https://github.com/mogdho)
-📂 Source: [CleanUp-your-system](https://github.com/mogdho/Hotspot-Auto-Connect)
+📂 Source: [Hotspot-Auto-Connect](https://github.com/mogdho/Hotspot-Auto-Connect)
